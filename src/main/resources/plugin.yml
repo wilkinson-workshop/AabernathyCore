@@ -1,0 +1,7 @@
+name: AabernathyCore
+version: '${version}'
+main: org.ww.adt.aabernathycore.AabernathyCore
+api-version: 1.19
+prefix: Aabernathy
+authors: [ WilkinsonK, rykeek ]
+description: Core plugin and utilities used in-house of the Wilkinson Workshop's custom server.
