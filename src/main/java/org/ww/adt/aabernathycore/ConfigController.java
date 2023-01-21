@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * and preprocessing for values that are set by the server
  * admin.
  */
-public class Configuration {
+public class ConfigController {
     private static JavaPlugin m_parent;
     private static FileConfiguration m_config;
     private static Logger m_logger;
@@ -20,7 +20,7 @@ public class Configuration {
      * the initial configuration object from this plugin.
      * @param config
      */
-    public static void init(JavaPlugin parent)
+    public static void init(final JavaPlugin parent)
     {
         m_config = parent.getConfig();
         m_logger = parent.getLogger();
@@ -37,7 +37,7 @@ public class Configuration {
         m_parent.saveConfig();
     }
 
-    public static boolean getDebugMode()
+    public static boolean getDebugModeEnabled()
     {
         return m_config.getBoolean("debugMode");
     }
