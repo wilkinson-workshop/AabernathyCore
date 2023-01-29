@@ -1,6 +1,6 @@
 name: AabernathyCore
 version: '${version}'
-main: org.ww.adt.aabernathycore.AabernathyCore
+main: org.ww.adt.core.AabernathyCore
 api-version: 1.19
 prefix: Aabernathy
 authors: [ WilkinsonK, rykeek ]
