@@ -24,6 +24,7 @@ public class ConfigController implements ComponentI
         sa_config.addDefault("debugMode", false);
 
         sa_isInit = true;
+        sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
     }
 
     public static boolean isInit()
@@ -38,6 +39,7 @@ public class ConfigController implements ComponentI
     {
         sa_config.options().copyDefaults(true);
         sa_parent.saveConfig();
+        sa_parent.getLogger().info("Saved config successfully.");
     }
 
     public static boolean getDebugModeEnabled()

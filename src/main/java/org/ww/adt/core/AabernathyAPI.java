@@ -14,8 +14,9 @@ public class AabernathyAPI implements ComponentI
      */
     public static void init(final AabernathyPlugin parent)
     {
-        sa_plugin = parent;
+        sa_parent = parent;
         sa_isInit = true;
+        sa_parent.getLogger().info(AabernathyAPI.class.getName() + " initialized.");
     }
 
     public static boolean isInit()
@@ -30,21 +31,18 @@ public class AabernathyAPI implements ComponentI
 
     public static AabernathyPlugin getPlugin()
     {
-        return sa_plugin;
+        return sa_parent;
     }
 
     public static void initConfig()
     {
-        ConfigController.init(sa_plugin);
+        ConfigController.init(sa_parent);
         ConfigController.save();
     }
 
-    public static void saveConfig()
-    {
-        ConfigController.save();
-    }
+    public static void saveConfig() { getConfig().save(); }
 
     private static boolean sa_isInit = false;
 
-    private static AabernathyPlugin sa_plugin;
+    private static AabernathyPlugin sa_parent;
 }
