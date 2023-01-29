@@ -1,11 +1,12 @@
-package org.ww.adt.aabernathycore;
+package org.ww.adt.core;
+
+import org.ww.adt.comp.ComponentI;
 
 /**
  * Aabernathy Core interface for programmatic development.
  */
-public class AabernathyAPI {
-
-    private static AabernathyPlugin m_plugin;
+public class AabernathyAPI implements ComponentI
+{
 
     /**
      * Initializes the API at runtime.
@@ -13,7 +14,13 @@ public class AabernathyAPI {
      */
     public static void init(final AabernathyPlugin parent)
     {
-        m_plugin = parent;
+        sa_plugin = parent;
+        sa_isInit = true;
+    }
+
+    public static boolean isInit()
+    {
+        return sa_isInit;
     }
 
     public static ConfigController getConfig()
@@ -23,12 +30,12 @@ public class AabernathyAPI {
 
     public static AabernathyPlugin getPlugin()
     {
-        return m_plugin;
+        return sa_plugin;
     }
 
     public static void initConfig()
     {
-        ConfigController.init(m_plugin);
+        ConfigController.init(sa_plugin);
         ConfigController.save();
     }
 
@@ -36,4 +43,8 @@ public class AabernathyAPI {
     {
         ConfigController.save();
     }
+
+    private static boolean sa_isInit = false;
+
+    private static AabernathyPlugin sa_plugin;
 }
