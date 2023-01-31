@@ -11,7 +11,7 @@ on:
   push:
     branches: [ "test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "test" ]
 
 permissions:
   contents: read
