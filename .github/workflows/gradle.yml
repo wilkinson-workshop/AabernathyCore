@@ -23,13 +23,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Install Known Hosts
-      run: ssh-keyscan -H ${{ secrets.MINECRAFTD_HOST }} > ~/.ssh/known_hosts
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.MINECRAFTD_SSH_PRIVATE_KEY }}
         known_hosts: ''
+    - name: Install Known Hosts
+      run: ssh-keyscan -H ${{ secrets.MINECRAFTD_HOST }} >> ~/.ssh/known_hosts
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
