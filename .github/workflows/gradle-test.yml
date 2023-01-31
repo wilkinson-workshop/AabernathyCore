@@ -44,4 +44,4 @@ jobs:
     - name: Deploy Build to Remote
       run: >
         find build/libs -iname "*.jar" | xargs -I {} rsync -avz {} ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }}:~/server/test/plugins &&
-        ssh ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }} sudo systemctl restart minecraft-test.service
+        ssh ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }} mcrcon -P 25576 "reload"
