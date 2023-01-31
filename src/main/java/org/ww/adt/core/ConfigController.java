@@ -42,7 +42,7 @@ public class ConfigController implements ComponentI
         sa_parent.getLogger().info("Saved config successfully.");
     }
 
-    public static boolean getDebugModeEnabled()
+    public static boolean debugMode()
     {
         return sa_config.getBoolean("debugMode");
     }

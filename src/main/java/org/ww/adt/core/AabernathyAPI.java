@@ -1,5 +1,8 @@
 package org.ww.adt.core;
 
+import java.lang.reflect.Method;
+
+import org.ww.adt.cli.CommandBroker;
 import org.ww.adt.comp.ComponentI;
 
 /**
@@ -24,11 +27,6 @@ public class AabernathyAPI implements ComponentI
         return sa_isInit;
     }
 
-    public static ConfigController getConfig()
-    {
-        return new ConfigController();
-    }
-
     public static AabernathyPlugin getPlugin()
     {
         return sa_parent;
@@ -40,7 +38,15 @@ public class AabernathyAPI implements ComponentI
         ConfigController.save();
     }
 
-    public static void saveConfig() { getConfig().save(); }
+    public static void initCommands()
+    {
+        CommandBroker.init(sa_parent);
+    }
+
+    public static void saveConfig()
+    {
+        ConfigController.save();
+    }
 
     private static boolean sa_isInit = false;
 
