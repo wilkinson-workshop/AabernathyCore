@@ -4,4 +4,4 @@ HOST=$1
 USER=$2
 ENVIRON=$3
 
-find $(pwd)/build/libs -iname "*.jar" | xargs -I {} rsync -avz {} $USER@$HOST:~/server/$ENVIRON
+find $(pwd)/build/libs -iname "*.jar" | xargs -I {} rsync -avz {} $USER@$HOST:~/server/$ENVIRON/plugins
