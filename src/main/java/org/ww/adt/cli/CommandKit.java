@@ -21,7 +21,8 @@ public class CommandKit implements CommandExecutor {
                 new ItemStack(Material.WRITABLE_BOOK)
             };
 
-            player.getInventory().addItem(iStacks[0], iStacks[1], iStacks[2]);
+            player.getInventory().addItem(iStacks);
+            player.sendMessage("[Aabernathy] sent " + player.getName() + " starting equipment.");
         }
 
         return true;
