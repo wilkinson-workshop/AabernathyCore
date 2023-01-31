@@ -42,4 +42,6 @@ jobs:
       with:
         arguments: build
     - name: Deploy Build to Remote
-      run: find build/libs -iname *.jar | rsync -avz --chown=minecraftd:minecraftd ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }}:~/server/test/plugins
+      run: >
+        find build/libs -iname *.jar | rsync -avz --chown=${{ secrets.MINECRAFTD_USER }} ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }}:~/server/test/plugins &&
+        ssh ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }} sudo systemctl restart minecraft-test.service
