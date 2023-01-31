@@ -13,6 +13,8 @@ public class CommandBroker implements ComponentI {
         sa_parent = (AabernathyPlugin)parent;
         sm_registerCommands();
         sa_isInit = true;
+        sa_parent.getLogger().info(CommandBroker.class.getName() + " initialized.");
+
     }
 
     public static boolean isInit()
