@@ -16,8 +16,8 @@ public class CommandDevel implements CommandExecutor
         if (sender instanceof Player)
         {
             ((Player)sender).sendMessage(
-                "[Aabernathy]" + ChatColor.WHITE + "Current State: DebugMode: " +
-                ChatColor.RED + ConfigController.debugMode() + ChatColor.WHITE);
+                "[Aabernathy] " + ChatColor.WHITE + "Current State: {DebugMode: " +
+                ChatColor.GREEN + ConfigController.debugMode() + ChatColor.WHITE + "}");
         }
         return true;
     }

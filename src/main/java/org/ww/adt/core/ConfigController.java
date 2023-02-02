@@ -38,7 +38,9 @@ public class ConfigController implements ComponentI
         sa_config.addDefault("messaging.on.playerExit.isActive", false);
 
         sa_isInit = true;
-        sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
+
+        if (debugMode())
+            sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
     }
 
     public static boolean isInit()

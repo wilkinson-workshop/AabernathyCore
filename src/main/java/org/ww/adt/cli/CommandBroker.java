@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import org.ww.adt.comp.ComponentI;
 import org.ww.adt.core.AabernathyPlugin;
+import org.ww.adt.core.ConfigController;
 
 public class CommandBroker implements ComponentI {
 
@@ -15,7 +16,9 @@ public class CommandBroker implements ComponentI {
         sa_parent = (AabernathyPlugin)parent;
         sm_registerCommands();
         sa_isInit = true;
-        sa_parent.getLogger().info(CommandBroker.class.getName() + " initialized.");
+
+        if (ConfigController.debugMode())
+            sa_parent.getLogger().info(CommandBroker.class.getName() + " initialized.");
     }
 
     public static boolean isInit()
