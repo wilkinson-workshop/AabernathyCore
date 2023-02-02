@@ -1,6 +1,5 @@
 package org.ww.adt.cli;
 
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.ww.adt.comp.ComponentI;

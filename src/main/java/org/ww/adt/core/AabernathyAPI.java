@@ -17,9 +17,7 @@ public class AabernathyAPI implements ComponentI
     {
         sa_parent = parent;
         sa_isInit = true;
-
-        if (ConfigController.debugMode())
-            sa_parent.getLogger().info(AabernathyAPI.class.getName() + " initialized.");
+        sa_parent.getLogger().info(AabernathyAPI.class.getName() + " initialized.");
     }
 
     public static boolean isInit()
