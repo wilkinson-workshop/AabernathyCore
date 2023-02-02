@@ -8,7 +8,7 @@ description: Core plugin and utilities used in-house of the Wilkinson Workshop's
 commands:
   devel:
     description: gives plugin information at a debug level
-    usage: /command
+    usage: /<command>
     permission: aabernathy.devel
   kit:
     description: gives players a nifty starter kit. Just to get them going!

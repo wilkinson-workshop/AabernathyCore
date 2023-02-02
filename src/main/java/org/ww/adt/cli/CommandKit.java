@@ -9,7 +9,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class CommandKit implements CommandExecutor
 {
-    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
     {
