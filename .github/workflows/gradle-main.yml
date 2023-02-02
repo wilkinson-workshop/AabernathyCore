@@ -48,4 +48,4 @@ jobs:
         arguments: build
 
     - name: Deploy Build to Remote
-      run: scripts/deploy-build ${{ secrets.MINECRAFTD_HOST }} ${{ secrets.MINECRAFTD_USER }} prod
+      run: scripts/deploy-build ${{ secrets.MINECRAFTD_HOST }} ${{ secrets.MINECRAFTD_USER }} prod 25575 ${{ secrets.MINECRAFTD_MCRCON_PASS }}

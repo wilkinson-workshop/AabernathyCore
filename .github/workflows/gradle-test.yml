@@ -47,4 +47,4 @@ jobs:
       with:
         arguments: build
     - name: Deploy Build to Remote
-      run: scripts/deploy-build ${{ secrets.MINECRAFTD_HOST }} ${{ secrets.MINECRAFTD_USER }} test
+      run: scripts/deploy-build ${{ secrets.MINECRAFTD_HOST }} ${{ secrets.MINECRAFTD_USER }} test 25576 ${{ secrets.MINECRAFTD_MCRCON_PASS }}

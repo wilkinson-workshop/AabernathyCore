@@ -4,4 +4,12 @@ HOST=$1
 USER=$2
 ENVIRON=$3
 
+MCRCON_PORT=$4
+MCRCON_PASS=$5
+
 find $(pwd)/build/libs -iname "*.jar" | xargs -I {} rsync -avz {} $USER@$HOST:~/server/$ENVIRON/plugins
+ssh $USER@$HOST /home/$USER/server/bin/mcrcon \
+    -H localhost    \
+    -P $MCRCON_PORT \
+    -p $MCRCON_PASS \
+    reload
