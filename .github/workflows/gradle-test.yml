@@ -23,25 +23,34 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Install SSH Key
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.MINECRAFTD_SSH_PRIVATE_KEY }}
         known_hosts: '<placeholder>'
+
     - name: Install Known Hosts
       run: ssh-keyscan -H ${{ secrets.MINECRAFTD_HOST }} >> ~/.ssh/known_hosts
+
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
+
     - name: Pre-Build with Gradle
-      run: chmod +x ./gradlew
+      run: chmod +x ./gradlew; find scripts -type f | xargs chmod +x
+
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
     - name: Deploy Build to Remote
-      run: >
-        find build/libs -iname "*.jar" | xargs -I {} rsync -avz {} ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }}:~/server/test/plugins &&
-        ssh ${{ secrets.MINECRAFTD_USER }}@${{ secrets.MINECRAFTD_HOST }} sudo systemctl restart minecraft-test.service
+      run: scripts/deploy-build.sh
+      env:
+        MCSERVER_ENVIRON: test
+        MINECRAFTD_HOST: ${{ secrets.MINECRAFTD_HOST }}
+        MINECRAFTD_USER: ${{ secrets.MINECRAFTD_USER }}
+        MCRCON_PASS: ${{ secrets.MINECRAFTD_MCRCON_PASS }}
+        MCRCON_PORT: 25576

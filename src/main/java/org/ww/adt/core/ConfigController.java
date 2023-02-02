@@ -1,5 +1,9 @@
 package org.ww.adt.core;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ww.adt.comp.ComponentI;
@@ -18,10 +22,19 @@ public class ConfigController implements ComponentI
      */
     public static void init(final JavaPlugin parent)
     {
+        ConfigurationSection cfgSection;
+
         sa_parent = (AabernathyPlugin)parent;
         sa_config = sa_parent.getConfig();
 
         sa_config.addDefault("debugMode", false);
+
+        sa_config.createSection("messaging.on.playerJoin");
+        sa_config.addDefault("messaging.on.playerJoin.isActive", false);
+        sa_config.addDefault("messaging.on.playerJoin.messages", new ArrayList<String>(Arrays.asList("{player:GREEN} has made an entrance!,".split(","))));
+
+        sa_config.createSection("messaging.on.playerExit");
+        sa_config.addDefault("messaging.on.playerExit.isActive", false);
 
         sa_isInit = true;
         sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
@@ -42,7 +55,7 @@ public class ConfigController implements ComponentI
         sa_parent.getLogger().info("Saved config successfully.");
     }
 
-    public static boolean getDebugModeEnabled()
+    public static boolean debugMode()
     {
         return sa_config.getBoolean("debugMode");
     }

@@ -5,3 +5,8 @@ api-version: 1.19
 prefix: Aabernathy
 authors: [ WilkinsonK, rykeek ]
 description: Core plugin and utilities used in-house of the Wilkinson Workshop's custom server.
+commands:
+  kit:
+    description: gives players a nifty starter kit. Just to get them going!
+    usage: /<command>
+    permission: aabernathy.kit
