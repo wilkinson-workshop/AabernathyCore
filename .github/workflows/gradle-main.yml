@@ -48,4 +48,10 @@ jobs:
         arguments: build
 
     - name: Deploy Build to Remote
-      run: scripts/deploy-build ${{ secrets.MINECRAFTD_HOST }} ${{ secrets.MINECRAFTD_USER }} prod 25575 ${{ secrets.MINECRAFTD_MCRCON_PASS }}
+      run: scripts/deploy-build.sh
+      env:
+        MCSERVER_ENV=prod
+        MINECRAFTD_HOST=${{ secrets.MINECRAFTD_HOST }}
+        MINECRAFTD_USER=${{ secrets.MINECRAFTD_USER }}
+        MCRCON_PASS=${{ secrets.MINECRAFTD_MCRCON_PASS }}
+        MCRCON_PORT=25575

@@ -1,22 +1,15 @@
 #!/bin/bash
 
-HOST=$1
-USER=$2
-ENVIRON=$3
-
-MCRCON_PORT=$4
-MCRCON_PASS=$5
-
 find $(pwd)/build/libs -iname "*.jar" | xargs -I {} \
     rsync -avz {} \
-    $USER@$HOST:~/server/$ENVIRON/plugins
+    $MINECRAFTD_USER@$MINECRAFTD_HOST:~/server/$MCSERVER_ENVIRON/plugins
 
 # We don't want to auto reload the production server.
-if [[ $ENVIRON == "prod" ]]; then
+if [[ $MCSERVER_ENVIRON == "prod" ]]; then
     exit 0
 fi
 
-ssh $USER@$HOST /home/$USER/server/bin/mcrcon \
+ssh $MINECRAFTD_USER@$MINECRAFTD_HOST /home/$MINECRAFTD_USER/server/bin/mcrcon \
     -H localhost    \
     -P $MCRCON_PORT \
     -p $MCRCON_PASS \
