@@ -1,5 +1,6 @@
 package org.ww.adt.cli;
 
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import org.ww.adt.comp.ComponentI;
@@ -26,6 +27,7 @@ public class CommandBroker implements ComponentI {
     private static void sm_registerCommands()
     {
         sa_parent.getCommand("kit").setExecutor(new CommandKit());
+        sa_parent.getCommand("devel").setExecutor(new CommandDevel());
     }
 
     private static boolean sa_isInit = false;

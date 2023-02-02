@@ -11,9 +11,6 @@ public final class AabernathyPlugin extends JavaPlugin
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        ma_logger.info("starting Aabernathy Core..."); // TODO: Display plugin version.
-
         // Initialize plugin API.
         AabernathyAPI.init(this);
 
