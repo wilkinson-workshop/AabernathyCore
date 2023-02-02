@@ -1,5 +1,6 @@
 package org.ww.adt.core;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -46,11 +47,23 @@ public class ConfigController implements ComponentI
     }
 
     /**
+     * Whether or not config.yml has been created.
+     */
+    public static boolean fileExists()
+    {
+        return new File(sa_parent.getDataFolder() + "config.yml").exists();
+    }
+
+    /**
      * Create a save state of the configuration.
      */
     public static void save()
     {
-        sa_config.options().copyDefaults(true);
+        // We want to only copy defaults if the config.yml
+        // file has not been created yet.
+        if (fileExists())
+            sa_config.options().copyDefaults(true);
+
         sa_parent.saveConfig();
         sa_parent.getLogger().info("Saved config successfully.");
     }

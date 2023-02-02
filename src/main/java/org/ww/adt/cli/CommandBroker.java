@@ -1,10 +1,12 @@
 package org.ww.adt.cli;
 
 import org.bukkit.plugin.java.JavaPlugin;
+
 import org.ww.adt.comp.ComponentI;
 import org.ww.adt.core.AabernathyPlugin;
 
 public class CommandBroker implements ComponentI {
+
     /**
      * Registers commands this broker is in charge of.
      */
@@ -14,7 +16,6 @@ public class CommandBroker implements ComponentI {
         sm_registerCommands();
         sa_isInit = true;
         sa_parent.getLogger().info(CommandBroker.class.getName() + " initialized.");
-
     }
 
     public static boolean isInit()
