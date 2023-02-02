@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ww.adt.comp.ComponentI;
 
@@ -53,10 +54,21 @@ public class ConfigController implements ComponentI
     }
 
     /**
+     * Load current state of config.yml
+     */
+    public static void load()
+    {
+        YamlConfiguration.loadConfiguration(new File(sa_parent.getDataFolder() + "config.yml"));
+    }
+
+    /**
      * Create a save state of the configuration.
      */
     public static void save()
     {
+        if (fileExists())
+            load();
+
         // We want to only copy defaults if the config.yml
         // file has not been created yet.
         sa_config.options().copyDefaults(!fileExists());
