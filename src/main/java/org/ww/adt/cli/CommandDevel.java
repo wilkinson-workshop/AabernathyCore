@@ -1,6 +1,6 @@
 package org.ww.adt.cli;
 
-import org.bukkit.Color;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,8 +16,8 @@ public class CommandDevel implements CommandExecutor
         if (sender instanceof Player)
         {
             ((Player)sender).sendMessage(
-                "[Aabernathy]" + Color.WHITE + "Current State: DebugMode: " +
-                Color.RED + ConfigController.debugMode() + Color.WHITE);
+                "[Aabernathy]" + ChatColor.WHITE + "Current State: DebugMode: " +
+                ChatColor.RED + ConfigController.debugMode() + ChatColor.WHITE);
         }
         return true;
     }
