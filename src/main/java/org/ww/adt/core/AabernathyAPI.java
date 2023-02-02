@@ -38,14 +38,14 @@ public class AabernathyAPI implements ComponentI
         ConfigController.save();
     }
 
-    public static void initCommands()
-    {
-        CommandBroker.init(sa_parent);
-    }
-
     public static void saveConfig()
     {
         ConfigController.save();
+    }
+
+    public static void initCommands()
+    {
+        CommandBroker.init(sa_parent);
     }
 
     private static boolean sa_isInit = false;
