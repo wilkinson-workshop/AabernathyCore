@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ww.adt.comp.ComponentI;
 
@@ -75,7 +74,7 @@ public class ConfigController implements ComponentI
     {
         // We want to only copy defaults if the config.yml
         // file has not been created yet.
-        sa_config.options().copyDefaults(true);
+        sa_config.options().copyDefaults(!fileExists());
         sa_parent.saveConfig();
         sa_parent.getLogger().info("Saved config successfully.");
     }

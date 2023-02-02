@@ -26,6 +26,8 @@ public final class AabernathyPlugin extends JavaPlugin
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        ma_logger.info("Aabernathy saved and shutdown successfully.");
+        if (!ConfigController.fileExists())
+            AabernathyAPI.saveConfig();
+        ma_logger.info("Aabernathy shutdown successfully.");
     }
 }
