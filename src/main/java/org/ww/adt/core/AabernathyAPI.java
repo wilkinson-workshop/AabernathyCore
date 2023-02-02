@@ -35,7 +35,6 @@ public class AabernathyAPI implements ComponentI
     public static void initConfig()
     {
         ConfigController.init(sa_parent);
-        ConfigController.save();
     }
 
     public static void saveConfig()

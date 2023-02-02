@@ -73,12 +73,9 @@ public class ConfigController implements ComponentI
      */
     public static void save()
     {
-        if (fileExists())
-            load();
-
         // We want to only copy defaults if the config.yml
         // file has not been created yet.
-        sa_config.options().copyDefaults(!fileExists());
+        sa_config.options().copyDefaults(true);
         sa_parent.saveConfig();
         sa_parent.getLogger().info("Saved config successfully.");
     }
