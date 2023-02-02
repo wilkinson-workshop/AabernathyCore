@@ -11,6 +11,11 @@ find $(pwd)/build/libs -iname "*.jar" | xargs -I {} \
     rsync -avz {} \
     $USER@$HOST:~/server/$ENVIRON/plugins
 
+# We don't want to auto reload the production server.
+if [[ $ENVIRON == "prod" ]]; then
+    exit 0
+fi
+
 ssh $USER@$HOST /home/$USER/server/bin/mcrcon \
     -H localhost    \
     -P $MCRCON_PORT \
