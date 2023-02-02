@@ -38,7 +38,9 @@ public class ConfigController implements ComponentI
         sa_config.addDefault("messaging.on.playerExit.isActive", false);
 
         sa_isInit = true;
-        sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
+
+        if (debugMode())
+            sa_parent.getLogger().info(ConfigController.class.getName() + " initialized.");
     }
 
     public static boolean isInit()
@@ -63,7 +65,8 @@ public class ConfigController implements ComponentI
             sa_config.load(new File(sa_parent.getDataFolder() + "config.yml"));
         } catch (IOException | InvalidConfigurationException error) {
             sa_parent.getLogger().warning("failed to load config.yml");
-            sa_parent.getLogger().warning("config failure: " + error.toString());
+            if (debugMode())
+                sa_parent.getLogger().warning("config failure: " + error.toString());
         }
     }
 
@@ -76,7 +79,9 @@ public class ConfigController implements ComponentI
         // file has not been created yet.
         sa_config.options().copyDefaults(!fileExists());
         sa_parent.saveConfig();
-        sa_parent.getLogger().info("Saved config successfully.");
+
+        if (debugMode())
+            sa_parent.getLogger().info("Saved config successfully.");
     }
 
     public static boolean debugMode()

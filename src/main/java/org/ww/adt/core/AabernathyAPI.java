@@ -1,7 +1,5 @@
 package org.ww.adt.core;
 
-import java.lang.reflect.Method;
-
 import org.ww.adt.cli.CommandBroker;
 import org.ww.adt.comp.ComponentI;
 
@@ -19,7 +17,9 @@ public class AabernathyAPI implements ComponentI
     {
         sa_parent = parent;
         sa_isInit = true;
-        sa_parent.getLogger().info(AabernathyAPI.class.getName() + " initialized.");
+
+        if (ConfigController.debugMode())
+            sa_parent.getLogger().info(AabernathyAPI.class.getName() + " initialized.");
     }
 
     public static boolean isInit()

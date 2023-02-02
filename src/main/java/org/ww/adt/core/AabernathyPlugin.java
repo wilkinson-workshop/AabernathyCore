@@ -20,7 +20,9 @@ public final class AabernathyPlugin extends JavaPlugin
         // Initialize Aabernathy components.
         AabernathyAPI.initConfig();
         AabernathyAPI.initCommands();
-        ma_logger.info("loading complete.");
+
+        if (ConfigController.debugMode())
+            ma_logger.info("loading complete.");
     }
 
     @Override
@@ -28,6 +30,8 @@ public final class AabernathyPlugin extends JavaPlugin
         // Plugin shutdown logic
         if (!ConfigController.fileExists())
             AabernathyAPI.saveConfig();
-        ma_logger.info("Aabernathy shutdown successfully.");
+        
+        if (ConfigController.debugMode())
+            ma_logger.info("Aabernathy shutdown successfully.");
     }
 }
