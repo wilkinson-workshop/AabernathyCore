@@ -1,9 +1,11 @@
 package org.ww.adt.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -58,7 +60,12 @@ public class ConfigController implements ComponentI
      */
     public static void load()
     {
-        YamlConfiguration.loadConfiguration(new File(sa_parent.getDataFolder() + "config.yml"));
+        try {
+            sa_config.load(new File(sa_parent.getDataFolder() + "config.yml"));
+        } catch (IOException | InvalidConfigurationException error) {
+            sa_parent.getLogger().warning("failed to load config.yml");
+            sa_parent.getLogger().warning("config failure: " + error.toString());
+        }
     }
 
     /**
