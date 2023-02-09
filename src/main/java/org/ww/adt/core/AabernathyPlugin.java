@@ -22,14 +22,17 @@ public final class AabernathyPlugin extends JavaPlugin
             ma_logger.info("loading complete.");
 
         //Adding saveConfig to fix issue
-        AabernathyAPI.saveConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        if (!ConfigController.fileExists())
-            AabernathyAPI.saveConfig();
+        // if (!ConfigController.fileExists())
+        //     AabernathyAPI.saveConfig();
+        reloadConfig();
+        saveConfig();
         
         if (ConfigController.debugMode())
             ma_logger.info("Aabernathy shutdown successfully.");
