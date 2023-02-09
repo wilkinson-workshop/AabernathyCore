@@ -8,9 +8,14 @@ public final class AabernathyPlugin extends JavaPlugin
 {
 
     private Logger ma_logger = getLogger();
+    private ChatListener chatListener = new ChatListener(this);
 
     @Override
     public void onEnable() {
+
+        PluginManager pm = this.getServer().getPluginManager();
+        pm.registerEvents(chatListener, this);
+        
         // Initialize plugin API.
         AabernathyAPI.init(this);
 
@@ -22,6 +27,9 @@ public final class AabernathyPlugin extends JavaPlugin
             ma_logger.info("loading complete.");
 
         //Adding saveConfig to fix issue
+
+        
+
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
