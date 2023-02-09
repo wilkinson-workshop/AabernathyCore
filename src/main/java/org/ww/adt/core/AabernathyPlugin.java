@@ -8,7 +8,7 @@ public final class AabernathyPlugin extends JavaPlugin
 {
 
     private Logger ma_logger = getLogger();
-    FileConfiguration config = getConfig();
+    // FileConfiguration config = getConfig();
 
     @Override
     public void onEnable() {
@@ -25,23 +25,23 @@ public final class AabernathyPlugin extends JavaPlugin
 
         //Adding saveConfig to fix issue
 
-        config.addDefault("youAreAwesome", true);
+        // config.addDefault("youAreAwesome", true);
         getConfig().options().copyDefaults(true);
         saveConfig();
 
-        getServer().getPluginManager().registerEvents(this, this);
+        // getServer().getPluginManager().registerEvents(this, this);
     }
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
+    // @EventHandler
+    // public void onPlayerJoin(PlayerJoinEvent event) {
+    //     Player player = event.getPlayer();
 
-        if (config.getBoolean("youAreAwesome")) {
-            player.sendMessage("You are awesome!");
-        } else {
-            player.sendMessage("You are not awesome...");
-        }
-    }
+    //     if (config.getBoolean("youAreAwesome")) {
+    //         player.sendMessage("You are awesome!");
+    //     } else {
+    //         player.sendMessage("You are not awesome...");
+    //     }
+    // }
 
     @Override
     public void onDisable() {
