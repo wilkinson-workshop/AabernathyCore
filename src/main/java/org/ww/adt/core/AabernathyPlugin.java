@@ -20,6 +20,9 @@ public final class AabernathyPlugin extends JavaPlugin
         // Initialize Aabernathy components.
         AabernathyAPI.initConfig();
         AabernathyAPI.initCommands();
+        
+        //Added this line to save changes.
+        AabernathyAPI.saveConfig();
         ma_logger.info("loading complete.");
     }
 
