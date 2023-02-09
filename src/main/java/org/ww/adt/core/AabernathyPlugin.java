@@ -11,9 +11,6 @@ public final class AabernathyPlugin extends JavaPlugin
 
     @Override
     public void onEnable() {
-
-        PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(this);
         
         // Initialize plugin API.
         AabernathyAPI.init(this);
