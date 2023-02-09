@@ -20,6 +20,9 @@ public final class AabernathyPlugin extends JavaPlugin
 
         if (ConfigController.debugMode())
             ma_logger.info("loading complete.");
+
+        //Adding saveConfig to fix issue
+        AabernathyAPI.saveConfig();
     }
 
     @Override
