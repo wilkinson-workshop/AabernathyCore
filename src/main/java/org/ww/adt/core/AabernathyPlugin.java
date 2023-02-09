@@ -8,13 +8,12 @@ public final class AabernathyPlugin extends JavaPlugin
 {
 
     private Logger ma_logger = getLogger();
-    private ChatListener chatListener = new ChatListener(this);
 
     @Override
     public void onEnable() {
 
         PluginManager pm = this.getServer().getPluginManager();
-        pm.registerEvents(chatListener, this);
+        pm.registerEvents(this);
         
         // Initialize plugin API.
         AabernathyAPI.init(this);
