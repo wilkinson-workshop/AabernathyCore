@@ -1,0 +1,9 @@
+# This is not to be directly modified. This 'guid' value
+# helps Aabernathy track whether it needs to create this
+# config file from scratch.
+guid: 'not-set'
+
+# This is meant for development purposes only. If 'true',
+# Aabernathy will output more data to internal logging
+# and server console.
+debugMode: false
