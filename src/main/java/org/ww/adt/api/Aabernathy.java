@@ -78,6 +78,8 @@ public class Aabernathy implements AabenernathyI {
     private File getConfigFile()
     {
         File pluginsFolder = plugin.getDataFolder().getParentFile();
-        return new File(new File(pluginsFolder, "Aabernathy"), "config.yaml");
+        File file = new File(new File(pluginsFolder, "Aabernathy"), "config.yaml");
+        plugin.getLogger().info("Target file path: " + file.toString());
+        return file;
     }
 }
