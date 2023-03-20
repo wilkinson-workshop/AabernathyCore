@@ -47,12 +47,6 @@ public class Aabernathy implements AabenernathyI {
 
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
-        configuration.setComments(
-                "guid",
-                Arrays.asList(new String[]{
-                        "This is not to be directly modified. This 'guid' value",
-                        "helps Aabernathy track whether or not it needs to",
-                        "create this config file from scratch."}));
 
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
