@@ -63,10 +63,10 @@ public class Aabernathy implements AabernathyI {
             "and server console."
         ));
 
-        this.plugin.getLogger().info("Config GUID: " + getConfigGuid());
+        this.plugin.getLogger().info("Config GUID: " + configuration.get("guid", null));
 
         // Do we need to create the file?
-        if (getConfigGuid() == null)
+        if (configuration.get("guid", null) == null)
         {
             configuration.options().copyDefaults(true);
             configuration.save(configurationFile);
@@ -125,7 +125,7 @@ public class Aabernathy implements AabernathyI {
      */
     private String getConfigGuid()
     {
-        Object guid = configuration.get("guid", null);
+        Object guid = ;
         if (guid == null)
             return null;
         return (String)guid;
