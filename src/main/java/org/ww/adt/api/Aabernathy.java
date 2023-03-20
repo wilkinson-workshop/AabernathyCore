@@ -64,7 +64,6 @@ public class Aabernathy implements AabenernathyI {
 
     public boolean stop() throws IOException
     {
-        configuration.save(configurationFile);
         return true;
     }
 
