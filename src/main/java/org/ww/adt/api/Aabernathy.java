@@ -44,12 +44,13 @@ public class Aabernathy implements AabenernathyI {
         configurationFile = getConfigFile();
         configuration = YamlConfiguration.loadConfiguration(configurationFile);
 
+        // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
 
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
-            configuration.options().copyDefaults();
+            configuration.options().copyDefaults(true);
             configuration.save(configurationFile);
         }
     }
@@ -59,9 +60,10 @@ public class Aabernathy implements AabenernathyI {
         return true;
     }
 
-    public boolean stop()
+    public boolean stop() throws IOException
     {
-        return false;
+        configuration.save(configurationFile);
+        return true;
     }
 
     /**

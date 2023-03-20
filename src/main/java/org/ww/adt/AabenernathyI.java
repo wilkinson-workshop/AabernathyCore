@@ -1,6 +1,7 @@
 package org.ww.adt;
 
 import java.io.File;
+import java.io.IOException;
 
 public interface AabenernathyI {
 
@@ -8,11 +9,11 @@ public interface AabenernathyI {
      * Start Aabernathy plugin.
      * @return True if plugin was shutdown successfully, False if otherwise.
      */
-    boolean start();
+    boolean start() throws IOException;
 
     /**
      * Stop Aabernathy plugin.
      * @return True if plugin was shutdown successfully, False if otherwise.
      */
-    boolean stop();
+    boolean stop() throws IOException;
 }

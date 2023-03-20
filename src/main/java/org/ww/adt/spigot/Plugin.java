@@ -19,17 +19,30 @@ public final class Plugin extends JavaPlugin
     {
         try {
             aabenernathy = new Aabernathy(this);
-            aabenernathy.start();
         } catch (IOException error)
         {
-            getLogger().warning("Failed to load API");
+            getLogger().warning("Failed to initialize API");
             getLogger().warning(error.toString());
+        }
+
+        if (!aabenernathy.start())
+        {
+            getLogger().warning("Failed to start API");
         }
     }
 
     @Override
     public void onDisable()
     {
-        aabenernathy.stop();
+        try {
+            if (!aabenernathy.stop())
+            {
+                getLogger().warning("Failed to stop API");
+            }
+        } catch (IOException error)
+        {
+            getLogger().warning("Failed to stop API");
+            getLogger().warning(error.toString());
+        }
     }
 }
