@@ -6,6 +6,7 @@ import org.ww.adt.AabenernathyI;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.UUID;
 
 public class Aabernathy implements AabenernathyI {
@@ -46,8 +47,13 @@ public class Aabernathy implements AabenernathyI {
 
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
+        configuration.setComments(
+                "guid",
+                Arrays.asList(new String[]{
+                        "This is not to be directly modified. This 'guid' value",
+                        "helps Aabernathy track whether or not it needs to",
+                        "create this config file from scratch."}));
 
-        this.plugin.getLogger().info("Testing plugin guid: " + configuration.get("guid", null));
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
