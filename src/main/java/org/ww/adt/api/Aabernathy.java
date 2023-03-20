@@ -64,6 +64,7 @@ public class Aabernathy implements AabernathyI {
 //        ));
 
         plugin.getLogger().info("Config Path: " + configurationFile);
+        plugin.getLogger().info("Config Path Exists: " + configurationFile.exists());
         plugin.getLogger().info("Config GUID: " + configuration.get("guid", null));
 
         // Do we need to create the file?
