@@ -26,9 +26,7 @@ public final class Plugin extends JavaPlugin
         }
 
         if (!aabenernathy.start())
-        {
             getLogger().warning("Failed to start API");
-        }
     }
 
     @Override
@@ -36,9 +34,7 @@ public final class Plugin extends JavaPlugin
     {
         try {
             if (!aabenernathy.stop())
-            {
                 getLogger().warning("Failed to stop API");
-            }
         } catch (IOException error)
         {
             getLogger().warning("Failed to stop API");

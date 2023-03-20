@@ -1,5 +1,7 @@
 package org.ww.adt;
 
+import org.bukkit.plugin.Plugin;
+
 import java.io.File;
 import java.io.IOException;
 

@@ -36,9 +36,7 @@ public class Aabernathy implements AabenernathyI {
     public Aabernathy(Plugin plugin) throws IOException
     {
         if (plugin == null)
-        {
             throw new IllegalArgumentException("Plugin cannot be null");
-        }
 
         this.plugin = plugin;
 
@@ -47,9 +45,14 @@ public class Aabernathy implements AabenernathyI {
 
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
+        configuration.setComments("guid", Arrays.asList(
+            "This is not to be directly modified. This 'guid' value",
+            "helps Aabernathy track whether it needs to create this",
+            "config file from scratch."
+        ));
 
         // Do we need to create the file?
-        if (configuration.get("guid", null) == null)
+        if (getConfigGuid() == null)
         {
             configuration.options().copyDefaults(true);
             configuration.save(configurationFile);
@@ -79,5 +82,17 @@ public class Aabernathy implements AabenernathyI {
     {
         File pluginsFolder = plugin.getDataFolder().getParentFile();
         return new File(new File(pluginsFolder, "Aabernathy"), "config.yaml");
+    }
+
+    /**
+     * Returns the GUID from the configuration.
+     * @return GUID value from the configuration.
+     */
+    private String getConfigGuid()
+    {
+        Object guid = configuration.get("guid", null);
+        if (guid == null)
+            return null;
+        return (String)guid;
     }
 }
