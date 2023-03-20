@@ -2,19 +2,24 @@ package org.ww.adt.api;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
-import org.ww.adt.AabenernathyI;
+import org.ww.adt.AabernathyI;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.UUID;
 
-public class Aabernathy implements AabenernathyI {
+public class Aabernathy implements AabernathyI {
 
     /**
      * The current revision number
      */
     private final static int REVISION = 0;
+
+    /**
+     * Singleton instance used to interact with internally.
+     */
+    private static AabernathyI API;
 
     /**
      * Parent Plugin object. Hooks in as API used to interact
@@ -67,6 +72,9 @@ public class Aabernathy implements AabenernathyI {
             // Unset default overwrite of loaded values.
             configuration.options().copyDefaults(false);
         }
+
+        // Set the singleton to this instance
+        setAPI(this);
     }
 
     public boolean start()
@@ -78,6 +86,24 @@ public class Aabernathy implements AabenernathyI {
     {
         configuration.save(configurationFile);
         return true;
+    }
+
+    /**
+     * Sets the singleton instance.
+     * @param api
+     */
+    public static void setAPI(AabernathyI api)
+    {
+        API = api;
+    }
+
+    /**
+     * Gets the singleton instance.
+     * @returns Instance of this interface that is loaded into memory.
+     */
+    public static AabernathyI getAPI()
+    {
+        return API;
     }
 
     /**
@@ -101,5 +127,14 @@ public class Aabernathy implements AabenernathyI {
         if (guid == null)
             return null;
         return (String)guid;
+    }
+
+    /**
+     * Whether debug mode is enabled.
+     * @return debugMode setting status loaded from the configuration.
+     */
+    private boolean debugModeEnabled()
+    {
+        return configuration.getBoolean("debugMode");
     }
 }

@@ -1,11 +1,8 @@
 package org.ww.adt;
 
-import org.bukkit.plugin.Plugin;
-
-import java.io.File;
 import java.io.IOException;
 
-public interface AabenernathyI {
+public interface AabernathyI {
 
     /**
      * Start Aabernathy plugin.

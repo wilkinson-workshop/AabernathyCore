@@ -1,7 +1,7 @@
 package org.ww.adt.spigot;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.ww.adt.AabenernathyI;
+import org.ww.adt.AabernathyI;
 import org.ww.adt.api.Aabernathy;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ public final class Plugin extends JavaPlugin
     /**
      * Core implementation API of Aabernathy plugin.
      */
-    private AabenernathyI aabenernathy;
+    private AabernathyI aabenernathy;
 
     @Override
     public void onEnable()
