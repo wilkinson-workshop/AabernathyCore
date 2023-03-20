@@ -63,6 +63,8 @@ public class Aabernathy implements AabernathyI {
             "and server console."
         ));
 
+        this.plugin.getLogger().info("Config GUID: " + getConfigGuid());
+
         // Do we need to create the file?
         if (getConfigGuid() == null)
         {
