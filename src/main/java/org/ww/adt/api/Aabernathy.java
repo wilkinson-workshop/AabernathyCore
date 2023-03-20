@@ -120,18 +120,6 @@ public class Aabernathy implements AabernathyI {
     }
 
     /**
-     * Returns the GUID from the configuration.
-     * @return GUID value from the configuration.
-     */
-    private String getConfigGuid()
-    {
-        Object guid = ;
-        if (guid == null)
-            return null;
-        return (String)guid;
-    }
-
-    /**
      * Whether debug mode is enabled.
      * @return debugMode setting status loaded from the configuration.
      */
