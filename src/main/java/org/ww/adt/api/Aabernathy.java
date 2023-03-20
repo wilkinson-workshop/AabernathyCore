@@ -51,6 +51,13 @@ public class Aabernathy implements AabenernathyI {
             "config file from scratch."
         ));
 
+        configuration.addDefault("debugMode", false);
+        configuration.setComments("debugMode", Arrays.asList(
+            "This is meant for development purposes only. If 'true',",
+            "Aabernathy will output more data to internal logging",
+            "and server console."
+        ));
+
         // Do we need to create the file?
         if (getConfigGuid() == null)
         {
