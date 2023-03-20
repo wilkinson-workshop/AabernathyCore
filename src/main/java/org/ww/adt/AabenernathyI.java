@@ -9,7 +9,7 @@ public interface AabenernathyI {
      * Start Aabernathy plugin.
      * @return True if plugin was shutdown successfully, False if otherwise.
      */
-    boolean start() throws IOException;
+    boolean start();
 
     /**
      * Stop Aabernathy plugin.
