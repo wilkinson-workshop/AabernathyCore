@@ -51,12 +51,9 @@ public class Aabernathy implements AabenernathyI {
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
-            configuration.options().copyDefaults();
+            configuration.options().copyDefaults(true);
             configuration.save(configurationFile);
         }
-        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
-        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
-        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
     }
 
     public boolean start()
@@ -78,8 +75,6 @@ public class Aabernathy implements AabenernathyI {
     private File getConfigFile()
     {
         File pluginsFolder = plugin.getDataFolder().getParentFile();
-        File file = new File(new File(pluginsFolder, "Aabernathy"), "config.yaml");
-        plugin.getLogger().info("Target file path: " + file.toString());
-        return file;
+        return new File(new File(pluginsFolder, "Aabernathy"), "config.yaml");
     }
 }
