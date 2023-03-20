@@ -50,18 +50,18 @@ public class Aabernathy implements AabernathyI {
 
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
-//        configuration.setComments("guid", Arrays.asList(
-//            "This is not to be directly modified. This 'guid' value",
-//            "helps Aabernathy track whether it needs to create this",
-//            "config file from scratch."
-//        ));
+        configuration.setComments("guid", Arrays.asList(
+            "This is not to be directly modified. This 'guid' value",
+            "helps Aabernathy track whether it needs to create this",
+            "config file from scratch."
+        ));
 
         configuration.addDefault("debugMode", false);
-//        configuration.setComments("debugMode", Arrays.asList(
-//            "This is meant for development purposes only. If 'true',",
-//            "Aabernathy will output more data to internal logging",
-//            "and server console."
-//        ));
+        configuration.setComments("debugMode", Arrays.asList(
+            "This is meant for development purposes only. If 'true',",
+            "Aabernathy will output more data to internal logging",
+            "and server console."
+        ));
 
         plugin.getLogger().info("Config Path: " + configurationFile);
         plugin.getLogger().info("Config Path Exists: " + configurationFile.exists());
