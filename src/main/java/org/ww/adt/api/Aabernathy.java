@@ -48,12 +48,14 @@ public class Aabernathy implements AabenernathyI {
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
 
-        plugin.getLogger().info("Config GUID: " + configuration.get("guid", null));
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
             configuration.options().copyDefaults(true);
             configuration.save(configurationFile);
+
+            // Unset default overwrite of loaded values.
+            configuration.options().copyDefaults(false);
         }
     }
 
@@ -64,6 +66,7 @@ public class Aabernathy implements AabenernathyI {
 
     public boolean stop() throws IOException
     {
+        configuration.save(configurationFile);
         return true;
     }
 
