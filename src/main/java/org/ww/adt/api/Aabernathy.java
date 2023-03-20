@@ -47,12 +47,16 @@ public class Aabernathy implements AabenernathyI {
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
 
+        this.plugin.getLogger().info("Testing plugin guid: " + configuration.get("guid", null));
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
-            configuration.options().copyDefaults(true);
+            configuration.options().copyDefaults();
             configuration.save(configurationFile);
         }
+        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
+        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
+        // guid: b8c9eabf-bc3f-4d21-93e1-3005af6d7655
     }
 
     public boolean start()
