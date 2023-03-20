@@ -48,6 +48,7 @@ public class Aabernathy implements AabenernathyI {
         // Define our configuration values.
         configuration.addDefault("guid", UUID.randomUUID().toString());
 
+        plugin.getLogger().info("Config GUID: " + configuration.get("guid", null));
         // Do we need to create the file?
         if (configuration.get("guid", null) == null)
         {
