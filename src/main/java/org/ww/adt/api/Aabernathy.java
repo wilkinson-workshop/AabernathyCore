@@ -1,14 +1,10 @@
 package org.ww.adt.api;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.ww.adt.AabernathyI;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.UUID;
 
 public class Aabernathy implements AabernathyI {
 
@@ -28,12 +24,6 @@ public class Aabernathy implements AabernathyI {
      */
     private final Plugin plugin;
 
-    /**
-     * The plugin configuration file. As parsed
-     * as a YAML format.
-     */
-    private final FileConfiguration configuration;
-
     public Aabernathy(Plugin plugin) throws IOException
     {
         if (plugin == null)
@@ -42,22 +32,25 @@ public class Aabernathy implements AabernathyI {
         this.plugin = plugin;
         this.plugin.saveDefaultConfig();
 
-        configuration = this.plugin.getConfig();
-        plugin.getLogger().info("Config GUID: " + configuration.get("guid", null));
-
         // Set the singleton to this instance
         setAPI(this);
     }
 
-    public boolean start()
+    public FileConfiguration getConfig()
     {
-        return true;
+        return getConfig(false);
     }
 
-    public boolean stop() throws IOException
+    public FileConfiguration getConfig(boolean forceReload)
+    {
+        if (forceReload)
+            this.plugin.reloadConfig();
+        return this.plugin.getConfig();
+    }
+
+    public void saveConfig()
     {
         this.plugin.saveConfig();
-        return true;
     }
 
     /**
@@ -71,7 +64,7 @@ public class Aabernathy implements AabernathyI {
 
     /**
      * Gets the singleton instance.
-     * @returns Instance of this interface that is loaded into memory.
+     * @return Instance of this interface that is loaded into memory.
      */
     public static AabernathyI getAPI()
     {

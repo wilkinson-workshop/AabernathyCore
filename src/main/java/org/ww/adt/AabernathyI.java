@@ -1,18 +1,26 @@
 package org.ww.adt;
 
+import org.bukkit.configuration.file.FileConfiguration;
+
 import java.io.IOException;
 
-public interface AabernathyI {
+public interface AabernathyI
+{
+    /**
+     * Gets the FileConfiguration instance.
+     * @return Aabernathy configuration object.
+     */
+    FileConfiguration getConfig();
 
     /**
-     * Start Aabernathy plugin.
-     * @return True if plugin was shutdown successfully, False if otherwise.
+     * Gets the FileConfiguration instance.
+     * @param forceReload whether the config should be reloaded from disk first.
+     * @return Aabernathy configuration object.
      */
-    boolean start();
+    FileConfiguration getConfig(boolean forceReload);
 
     /**
-     * Stop Aabernathy plugin.
-     * @return True if plugin was shutdown successfully, False if otherwise.
+     * Saves the configuration to disk.
      */
-    boolean stop() throws IOException;
+    void saveConfig();
 }
