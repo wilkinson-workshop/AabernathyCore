@@ -32,7 +32,14 @@ public class PlayerE implements Listener
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event)
     {
+        // Send global message to all players.
         Message.send(event, getJoinMessage());
+
+        // Send personal message to player.
+        ArrayList<String> message = (ArrayList<String>) apiInstance
+                .getConfig(true)
+                .getStringList("messages.motd");
+        Message.send(message.toArray(new String[0]), event.getPlayer());
     }
 
     @EventHandler
@@ -48,8 +55,8 @@ public class PlayerE implements Listener
     private String getJoinMessage()
     {
         ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
-                .getConfig(true)
-                .getStringList("messages.onPlayerJoin");
+            .getConfig(true)
+            .getStringList("messages.onPlayerJoin");
 
         if (messageOpts.size() == 0)
             return "%(player) has joined the game.";
@@ -63,8 +70,8 @@ public class PlayerE implements Listener
     private String getQuitMessage()
     {
         ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
-                .getConfig(true)
-                .getStringList("messages.onPlayerQuit");
+            .getConfig(true)
+            .getStringList("messages.onPlayerQuit");
 
         if (messageOpts.size() == 0)
             return "%(player) has left the game.";

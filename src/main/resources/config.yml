@@ -8,6 +8,13 @@ debugLevel: 0
 # Whenever an event is triggered, onPlayerJoin for example,
 # a message will be chosen at random to send to all players.
 messages:
+  motd:
+    - '&fHello %(player), welcome to Aabernathy!'
+    - '&fDid you know the server has multiple ways to connect'
+    - '&fwith other players of the community?? Click on the'
+    - '&fbelow to see all that Aabernathy has to offer:'
+    - '&9DISCORD&7: &fhttps://discord.gg/G5mtAd8a8a'
+    - '&9BLUEMAP&7: &fhttps://mine.aabernathy-mc.app/minecraft/'
   onPlayerJoin:
     - '&a%(player) &fhas entered the chat!'
     - '&a%(player) &fhas appeared from out of nowhere!'
