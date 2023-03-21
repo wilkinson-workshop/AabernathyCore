@@ -1,4 +1,14 @@
 # This is meant for development purposes only. If 'true',
 # Aabernathy will output more data to internal logging
-# and server console.
-debugMode: false
+# and server console. Optional values are 0-3
+debugLevel: 0
+
+# Messages defined here map out things that will be sent
+# either to one, some or all players active in the game.
+# Whenever an event is triggered, onPlayerJoin for example,
+# a message will be chosen at random to send to all players.
+messages:
+  onPlayerJoin:
+    - '%(player) has entered the chat!'
+  onPlayerQuit:
+    - '%(player) has left the chat!'

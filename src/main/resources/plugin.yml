@@ -5,3 +5,7 @@ api-version: 1.19
 prefix: Aabernathy
 authors: [ WilkinsonK, rykeek, jgarbero-source ]
 description: Core plugin and utilities used in-house of the Wilkinson Workshop's custom server.
+commands:
+  set-spawn:
+    description: Set player spawn location
+    usage: /set-spawn

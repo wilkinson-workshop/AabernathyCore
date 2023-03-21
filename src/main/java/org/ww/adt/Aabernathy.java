@@ -1,22 +1,17 @@
-package org.ww.adt.api;
+package org.ww.adt;
 
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.ww.adt.AabernathyI;
 
 import java.io.IOException;
 
 public class Aabernathy implements AabernathyI {
 
     /**
-     * The current revision number
-     */
-    private final static int REVISION = 0;
-
-    /**
      * Singleton instance used to interact with internally.
      */
-    private static AabernathyI API;
+    private static AabernathyI instance;
 
     /**
      * Parent Plugin object. Hooks in as API used to interact
@@ -33,7 +28,12 @@ public class Aabernathy implements AabernathyI {
         this.plugin.saveDefaultConfig();
 
         // Set the singleton to this instance
-        setAPI(this);
+        setInstance(this);
+    }
+
+    public Integer getDebugLevel()
+    {
+        return getConfig(true).getInt("debugLevel");
     }
 
     public FileConfiguration getConfig()
@@ -53,21 +53,26 @@ public class Aabernathy implements AabernathyI {
         this.plugin.saveConfig();
     }
 
+    public void registerEvent(Listener listener)
+    {
+        this.plugin.getServer().getPluginManager().registerEvents(listener, this.plugin);
+    }
+
     /**
      * Sets the singleton instance.
-     * @param api
+     * @param apiInstance
      */
-    public static void setAPI(AabernathyI api)
+    public static void setInstance(AabernathyI apiInstance)
     {
-        API = api;
+        instance = apiInstance;
     }
 
     /**
      * Gets the singleton instance.
      * @return Instance of this interface that is loaded into memory.
      */
-    public static AabernathyI getAPI()
+    public static AabernathyI getInstance()
     {
-        return API;
+        return instance;
     }
 }

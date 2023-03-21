@@ -2,7 +2,7 @@ package org.ww.adt.spigot;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import org.ww.adt.AabernathyI;
-import org.ww.adt.api.Aabernathy;
+import org.ww.adt.Aabernathy;
 
 import java.io.IOException;
 
