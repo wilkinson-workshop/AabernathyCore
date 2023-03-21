@@ -9,6 +9,14 @@ debugLevel: 0
 # a message will be chosen at random to send to all players.
 messages:
   onPlayerJoin:
-    - '%(player) has entered the chat!'
+    - '&a%(player) &7has entered the chat!'
+    - '&a%(player) &7has appeared from out of nowhere!'
+    - '&a%(player) &7materialized from out of nowhere!'
+    - '&a%(player) &7suddenly exists, just as they always have.'
+    - '&7A while &a%(player) appears!'
+    - '&7Appearing from the void &4%(player) &7makes an entrance!'
   onPlayerQuit:
-    - '%(player) has left the chat!'
+    - '&c%(player) &7has left the chat!'
+    - '&c%(player) &7vanished into thin air...'
+    - '&7And like that &c%(player) &7no longer exists.'
+    - '&7Light momentarily bends around the spot &c%(player) &7once stood. The disappear without a trace!'
