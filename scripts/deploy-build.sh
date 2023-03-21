@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# If we are deploying from 'main' branch, we need to
+# ensure we point to production as the environment.
+if [[ $MCSERVER_ENVIRON == "main" ]]; then
+    MCSERVER_ENVIRON="prod"
+fi
+
 find $(pwd)/build/libs -iname "*.jar" | xargs -I {} \
     rsync -avz {} \
     $MINECRAFTD_USER@$MINECRAFTD_HOST:~/server/$MCSERVER_ENVIRON/plugins
