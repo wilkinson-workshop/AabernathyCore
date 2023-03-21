@@ -1,0 +1,22 @@
+# This is meant for development purposes only. If 'true',
+# Aabernathy will output more data to internal logging
+# and server console. Optional values are 0-3
+debugLevel: 0
+
+# Messages defined here map out things that will be sent
+# either to one, some or all players active in the game.
+# Whenever an event is triggered, onPlayerJoin for example,
+# a message will be chosen at random to send to all players.
+messages:
+  onPlayerJoin:
+    - '&a%(player) &7has entered the chat!'
+    - '&a%(player) &7has appeared from out of nowhere!'
+    - '&a%(player) &7materialized from out of nowhere!'
+    - '&a%(player) &7suddenly exists, just as they always have.'
+    - '&7A while &a%(player) appears!'
+    - '&7Appearing from the void &4%(player) &7makes an entrance!'
+  onPlayerQuit:
+    - '&c%(player) &7has left the chat!'
+    - '&c%(player) &7vanished into thin air...'
+    - '&7And like that &c%(player) &7no longer exists.'
+    - '&7Light momentarily bends around the spot &c%(player) &7once stood. The disappear without a trace!'

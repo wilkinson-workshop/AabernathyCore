@@ -1,12 +1,11 @@
-name: AabernathyCore
+name: Aabernathy
 version: '${version}'
-main: org.ww.adt.core.AabernathyPlugin
+main: org.ww.adt.spigot.Plugin
 api-version: 1.19
 prefix: Aabernathy
-authors: [ WilkinsonK, rykeek ]
+authors: [ WilkinsonK, rykeek, jgarbero-source ]
 description: Core plugin and utilities used in-house of the Wilkinson Workshop's custom server.
 commands:
-  kit:
-    description: gives players a nifty starter kit. Just to get them going!
-    usage: /<command>
-    permission: aabernathy.kit
+  set-spawn:
+    description: Set player spawn location
+    usage: /set-spawn
