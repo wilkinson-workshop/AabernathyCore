@@ -8,6 +8,7 @@ import org.ww.adt.AabernathyI;
 import org.ww.adt.spigot.Message;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class PlayerE implements Listener
@@ -36,16 +37,28 @@ public class PlayerE implements Listener
         Message.send(event, getJoinMessage());
 
         // Send personal message to player.
-        ArrayList<String> message = (ArrayList<String>) apiInstance
-                .getConfig(true)
-                .getStringList("messages.motd");
-        Message.send(message.toArray(new String[0]), event.getPlayer());
+        Message.send(getMessageOfTheDay(), event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event)
     {
         Message.send(event, getQuitMessage());
+    }
+
+    /**
+     * Get message of the day.
+     * @return message of the day as defined in the configuration.
+     */
+    private String[] getMessageOfTheDay()
+    {
+        ArrayList<String> message = (ArrayList<String>) apiInstance
+                .getConfig(true)
+                .getStringList("messages.motd");
+
+        if (message.size() == 0)
+            message.add("Hello %(player), welcome to Aabernathy!");
+        return message.toArray(new String[0]);
     }
 
     /**
