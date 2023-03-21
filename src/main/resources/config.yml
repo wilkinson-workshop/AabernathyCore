@@ -9,14 +9,14 @@ debugLevel: 0
 # a message will be chosen at random to send to all players.
 messages:
   onPlayerJoin:
-    - '&a%(player) &7has entered the chat!'
-    - '&a%(player) &7has appeared from out of nowhere!'
-    - '&a%(player) &7materialized from out of nowhere!'
-    - '&a%(player) &7suddenly exists, just as they always have.'
-    - '&7A while &a%(player) appears!'
-    - '&7Appearing from the void &4%(player) &7makes an entrance!'
+    - '&a%(player) &fhas entered the chat!'
+    - '&a%(player) &fhas appeared from out of nowhere!'
+    - '&a%(player) &fmaterialized from out of nowhere!'
+    - '&a%(player) &fsuddenly exists, just as they always have.'
+    - '&fA wild &a%(player) &fappears!'
+    - '&fAppearing from the void &4%(player) &fmakes an entrance!'
   onPlayerQuit:
-    - '&c%(player) &7has left the chat!'
-    - '&c%(player) &7vanished into thin air...'
-    - '&7And like that &c%(player) &7no longer exists.'
-    - '&7Light momentarily bends around the spot &c%(player) &7once stood. The disappear without a trace!'
+    - '&c%(player) &fhas left the chat!'
+    - '&c%(player) &fvanished into thin air...'
+    - '&fAnd like that &c%(player) &fno longer exists.'
+    - '&fLight momentarily bends around the spot &c%(player) &fonce stood. The disappear without a trace!'
