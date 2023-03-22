@@ -20,11 +20,6 @@ public class Aabernathy implements AabernathyI {
      */
     private final Plugin plugin;
 
-    /**
-     * Event listeners used in this API.
-     */
-    private final Listener[] listeners;
-
     public Aabernathy(Plugin plugin) throws IOException
     {
         if (plugin == null)
@@ -34,9 +29,7 @@ public class Aabernathy implements AabernathyI {
         this.plugin.saveDefaultConfig();
 
         // Set event listeners.
-        listeners = new Listener[]{
-                new PlayerE(this)
-        };
+        new PlayerE(this);
 
         // Set the singleton to this instance
         setInstance(this);

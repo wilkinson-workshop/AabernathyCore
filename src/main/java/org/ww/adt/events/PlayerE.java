@@ -8,7 +8,6 @@ import org.ww.adt.AabernathyI;
 import org.ww.adt.spigot.Message;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class PlayerE implements Listener
@@ -17,7 +16,7 @@ public class PlayerE implements Listener
     /**
      * Parent instance of Aabernathy's API.
      */
-    private final AabernathyI apiInstance;
+    private final static AabernathyI apiInstance = null;
 
     /**
      * Random number generator.
@@ -26,12 +25,12 @@ public class PlayerE implements Listener
 
     public PlayerE(AabernathyI apiInstance)
     {
-        this.apiInstance = apiInstance;
-        this.apiInstance.registerEvent(this);
+        apiInstance = apiInstance;
+        apiInstance.registerEvent(this);
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event)
+    public static void onPlayerJoin(PlayerJoinEvent event)
     {
         // Send global message to all players.
         Message.send(event, getJoinMessage());
@@ -41,7 +40,7 @@ public class PlayerE implements Listener
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event)
+    public static void onPlayerQuit(PlayerQuitEvent event)
     {
         Message.send(event, getQuitMessage());
     }
@@ -50,7 +49,7 @@ public class PlayerE implements Listener
      * Get message of the day.
      * @return message of the day as defined in the configuration.
      */
-    private String[] getMessageOfTheDay()
+    private static String[] getMessageOfTheDay()
     {
         ArrayList<String> message = (ArrayList<String>) apiInstance
                 .getConfig(true)
@@ -65,7 +64,7 @@ public class PlayerE implements Listener
      * Returns a random join message from configuration.
      * @return a random join message.
      */
-    private String getJoinMessage()
+    private static String getJoinMessage()
     {
         ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
             .getConfig(true)
@@ -80,7 +79,7 @@ public class PlayerE implements Listener
      * Returns a random quit message from configuration.
      * @return a random quit message.
      */
-    private String getQuitMessage()
+    private static String getQuitMessage()
     {
         ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
             .getConfig(true)
