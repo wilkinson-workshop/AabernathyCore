@@ -16,16 +16,16 @@ public class PlayerE implements Listener
     /**
      * Parent instance of Aabernathy's API.
      */
-    private final static AabernathyI apiInstance = null;
+    private static AabernathyI apiInstance = null;
 
     /**
      * Random number generator.
      */
     private final static Random random = new Random();
 
-    public PlayerE(AabernathyI apiInstance)
+    public PlayerE(AabernathyI instance)
     {
-        apiInstance = apiInstance;
+        apiInstance = instance;
         apiInstance.registerEvent(this);
     }
 
