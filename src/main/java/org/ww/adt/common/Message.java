@@ -1,4 +1,4 @@
-package org.ww.adt.spigot;
+package org.ww.adt.common;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

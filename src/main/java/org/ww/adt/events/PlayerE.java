@@ -4,13 +4,14 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.ww.adt.AabernathyComponent;
 import org.ww.adt.AabernathyI;
-import org.ww.adt.spigot.Message;
+import org.ww.adt.common.Message;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayerE implements Listener
+public class PlayerE extends AabernathyComponent implements Listener
 {
 
     /**
@@ -23,9 +24,9 @@ public class PlayerE implements Listener
      */
     private final static Random random = new Random();
 
-    public PlayerE(AabernathyI instance)
+    public PlayerE(AabernathyI apiInstance)
     {
-        apiInstance = instance;
+        super(apiInstance);
         apiInstance.registerEvent(this);
     }
 
