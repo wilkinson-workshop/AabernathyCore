@@ -3,6 +3,8 @@ package org.ww.adt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
+import java.util.logging.Logger;
+
 public interface AabernathyI
 {
     /**
@@ -29,6 +31,12 @@ public interface AabernathyI
      * Saves the configuration to disk.
      */
     void saveConfig();
+
+    /**
+     * Gets the logger associated with this plugin.
+     * @return plugin Logger instance.
+     */
+    Logger getLogger();
 
     /**
      * Register an event listener and all the containing events.
