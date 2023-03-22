@@ -24,9 +24,10 @@ public class PlayerE extends AabernathyComponent implements Listener
      */
     private final static Random random = new Random();
 
-    public PlayerE(AabernathyI apiInstance)
+    public PlayerE(AabernathyI apiInstancef)
     {
-        super(apiInstance);
+        super(apiInstancef);
+        apiInstance = apiInstancef;
         apiInstance.registerEvent(this);
     }
 
