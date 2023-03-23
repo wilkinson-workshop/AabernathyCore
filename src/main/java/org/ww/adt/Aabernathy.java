@@ -4,9 +4,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.ww.adt.events.PlayerE;
-import org.ww.adt.warp.WarpManager;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -30,10 +28,6 @@ public class Aabernathy implements AabernathyI {
 
         this.plugin = plugin;
         this.plugin.saveDefaultConfig();
-
-        WarpManager warpManager = new WarpManager(this);
-        warpManager.dumpJSON(new File(plugin.getDataFolder(), "warp-data.json"));
-        warpManager.loadJSON(new File(plugin.getDataFolder(), "warp-data.json"));
 
         // Set event listeners.
         new PlayerE(this);
