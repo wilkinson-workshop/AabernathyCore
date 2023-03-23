@@ -32,7 +32,8 @@ public class Aabernathy implements AabernathyI {
         this.plugin.saveDefaultConfig();
 
         WarpManager warpManager = new WarpManager(this);
-        WarpManager.dumpJSON(warpManager, new File(plugin.getDataFolder(), "warp-data.json"));
+        warpManager.dumpJSON(new File(plugin.getDataFolder(), "warp-data.json"));
+        warpManager.loadJSON(new File(plugin.getDataFolder(), "warp-data.json"));
 
         // Set event listeners.
         new PlayerE(this);

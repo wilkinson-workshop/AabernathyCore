@@ -32,11 +32,10 @@ public class WarpManager extends AabernathyComponent
 
     /**
      * Load a WarpManager object from the target filePath
-     * @param apiInstance
      * @param filePath
      * @return a WarpManager object.
      */
-    public static WarpManager loadJSON(AabernathyI apiInstance, File filePath)
+    public WarpManager loadJSON(File filePath)
     {
         Map<String, WarpMeta> data;
         Type serialType = new TypeToken<LinkedHashMap<String, WarpMeta>>() {}.getType();
@@ -44,31 +43,32 @@ public class WarpManager extends AabernathyComponent
         try {
             Reader reader = new FileReader(filePath);
             data = gson.fromJson(reader, serialType);
+
+            reader.close();
         } catch (IOException error) {
-            apiInstance.getLogger().warning(error.getMessage());
+            getApiInstance().getLogger().warning(error.getMessage());
             return null;
         }
-        return new WarpManager(apiInstance, data);
+        return new WarpManager(getApiInstance(), data);
     }
 
     /**
      * Saves WarpManager records to a target filePath on disk.
-     * @param manager
      * @param filePath
      */
-    public static void dumpJSON(WarpManager manager, File filePath)
+    public void dumpJSON(File filePath)
     {
         filePath.getParentFile().mkdirs();
 
         try {
             filePath.createNewFile();
             Writer writer = new FileWriter(filePath, false);
-            gson.toJson(manager.warpRecords, writer);
+            gson.toJson(warpRecords, writer);
 
             writer.flush();
             writer.close();
         } catch (IOException error) {
-            manager.getApiInstance().getLogger().warning(error.getMessage());
+            getApiInstance().getLogger().warning(error.getMessage());
         }
     }
 
