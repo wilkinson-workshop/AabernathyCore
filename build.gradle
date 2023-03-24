@@ -18,9 +18,14 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.jetbrains:annotations:20.1.0'
     compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+    compileOnly 'org.jetbrains:annotations:24.0.1'
+    compileOnly 'com.google.code.gson:gson:2.10.1'
+    compileOnly 'org.hibernate:hibernate-core-jakarta:5.6.15.Final'
+    compileOnly 'org.xerial:sqlite-jdbc:3.40.1.0'
+    compileOnly 'com.github.gwenn:sqlite-dialect:0.1.2'
 }
 
 def targetJavaVersion = 18

@@ -3,7 +3,7 @@ package org.ww.adt.events;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.ww.adt.common.Message;
+import org.ww.adt.util.Message;
 
 import java.util.ArrayList;
 import java.util.Random;

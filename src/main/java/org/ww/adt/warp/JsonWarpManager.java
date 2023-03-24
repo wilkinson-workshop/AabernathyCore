@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
+import org.ww.adt.util.Json;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -14,7 +15,6 @@ import java.util.Map;
 
 public class JsonWarpManager extends WarpManagerBase
 {
-    private final static Gson gson = new Gson();
     private final static String formatKey = "%s:%s"; // <UUID>:<warpName>
 
     private final Map<String, WarpMeta> warpRecords;
@@ -38,19 +38,8 @@ public class JsonWarpManager extends WarpManagerBase
      */
     public static JsonWarpManager loadJSON(File filePath)
     {
-        Map<String, WarpMeta> data;
         Type serialType = new TypeToken<LinkedHashMap<String, WarpMeta>>() {}.getType();
-
-        try {
-            Reader reader = new FileReader(filePath);
-            data = gson.fromJson(reader, serialType);
-
-            reader.close();
-        } catch (IOException error) {
-            getApiInstance().getLogger().warning(error.getMessage());
-            return null;
-        }
-        return new JsonWarpManager(data);
+        return new JsonWarpManager(Json.load(filePath, serialType));
     }
 
     /**
@@ -60,17 +49,7 @@ public class JsonWarpManager extends WarpManagerBase
     public static void dumpJSON(JsonWarpManager manager, File filePath)
     {
         filePath.getParentFile().mkdirs();
-
-        try {
-            filePath.createNewFile();
-            Writer writer = new FileWriter(filePath, false);
-            gson.toJson(manager.warpRecords, writer);
-
-            writer.flush();
-            writer.close();
-        } catch (IOException error) {
-            getApiInstance().getLogger().warning(error.getMessage());
-        }
+        Json.dump(filePath, manager.warpRecords);
     }
 
     public WarpMeta addEntityRecord(@NotNull Entity entity, String name, WarpAccess access)

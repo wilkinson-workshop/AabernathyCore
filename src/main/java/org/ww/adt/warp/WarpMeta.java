@@ -1,11 +1,18 @@
 package org.ww.adt.warp;
 
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
+@jakarta.persistence.Entity
+@Table(name = "warps")
+@Getter
+@Setter
 public class WarpMeta {
     private String name;
     private String worldName;
@@ -20,6 +27,8 @@ public class WarpMeta {
     private float yaw;
 
     private WarpAccess access;
+
+    public WarpMeta() {}
 
     public WarpMeta(
             String name,

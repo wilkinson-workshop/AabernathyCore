@@ -25,5 +25,4 @@ public abstract class WarpManagerBase extends AabernathyComponent implements War
     {
         return (warp.OwnerUUID() == entity.getUniqueId());
     }
-
 }
