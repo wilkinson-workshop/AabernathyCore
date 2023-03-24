@@ -13,16 +13,16 @@ public abstract class WarpManagerBase extends AabernathyComponent implements War
 
     public static boolean warpIsPublic(WarpMeta warp)
     {
-        return (warp.Access() == WarpAccess.PUBLIC);
+        return (warp.getAccess() == WarpAccess.PUBLIC);
     }
 
     public static boolean serverIsOwner(WarpMeta warp)
     {
-        return (warp.Type() == WarpType.SERVER_OWNED);
+        return (warp.getWarpType() == WarpType.SERVER_OWNED);
     }
 
     public static boolean entityIsOwner(@NotNull Entity entity, WarpMeta warp)
     {
-        return (warp.OwnerUUID() == entity.getUniqueId());
+        return (warp.getOwnerUUID() == entity.getUniqueId());
     }
 }

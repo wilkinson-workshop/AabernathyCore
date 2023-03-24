@@ -1,5 +1,6 @@
 package org.ww.adt.warp;
 
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,9 @@ import java.util.UUID;
 public class WarpMeta {
     private String name;
     private String worldName;
-    private WarpType type;
+    private WarpType warpType;
+
+    @Id
     private UUID ownerUUID;
 
     private float positionX;
@@ -33,7 +36,7 @@ public class WarpMeta {
     public WarpMeta(
             String name,
             String worldName,
-            WarpType type,
+            WarpType warpType,
             UUID ownerUUID,
             float x,
             float z,
@@ -44,7 +47,7 @@ public class WarpMeta {
     {
         this.name = name;
         this.worldName = worldName;
-        this.type = type;
+        this.warpType = warpType;
         this.ownerUUID = ownerUUID;
 
         this.positionX = x;
@@ -60,32 +63,25 @@ public class WarpMeta {
     public WarpMeta(
             String name,
             String worldName,
-            WarpType type,
+            WarpType warpType,
             UUID ownerUUID,
             WarpPoint point,
             WarpAccess access)
     {
         this.name = name;
         this.worldName = worldName;
-        this.type = type;
+        this.warpType = warpType;
         this.ownerUUID = ownerUUID;
 
-        this.positionX = point.PositionX();
-        this.positionZ = point.PositionZ();
-        this.positionY = point.PositionY();
+        this.positionX = point.getPositionX();
+        this.positionZ = point.getPositionZ();
+        this.positionY = point.getPositionY();
 
-        this.pitch = point.Pitch();
-        this.yaw   = point.Yaw();
+        this.pitch = point.getPitch();
+        this.yaw   = point.getYaw();
 
         this.access = access;
     }
-
-    public String Name() { return this.name; }
-    public String WorldName() { return this.worldName; }
-    public WarpType Type() { return this.type; }
-    public UUID OwnerUUID() { return this.ownerUUID; }
-
-    public WarpAccess Access() { return this.access; }
 
     public WarpPoint Point()
     {
@@ -99,7 +95,7 @@ public class WarpMeta {
 
     public static WarpMeta fromEntity(Entity entity, String name, WarpAccess access)
     {
-        WarpType type;
+        WarpType vWarpType;
 
         Location loc = entity.getLocation();
         WarpPoint point = new WarpPoint(
@@ -112,14 +108,14 @@ public class WarpMeta {
         UUID ownerUUID = entity.getUniqueId();
 
         if (entity instanceof Player)
-            type = WarpType.PLAYER_OWNED;
+            vWarpType = WarpType.PLAYER_OWNED;
         else
-            type = WarpType.SERVER_OWNED;
+            vWarpType = WarpType.SERVER_OWNED;
 
         return new WarpMeta(
                 name,
                 worldName,
-                type,
+                vWarpType,
                 ownerUUID,
                 point,
                 access);
