@@ -17,15 +17,15 @@ public class WarpManager extends AabernathyComponent
 
     private final Map<String, WarpMeta> warpRecords;
 
-    public WarpManager(AabernathyAPI apiInstance)
+    public WarpManager()
     {
-        super(apiInstance);
+        super();
         warpRecords = new LinkedHashMap<>();
     }
 
-    public WarpManager(AabernathyAPI apiInstance, Map<String, WarpMeta> warpRecords)
+    public WarpManager(Map<String, WarpMeta> warpRecords)
     {
-        super(apiInstance);
+        super();
         this.warpRecords = warpRecords;
     }
 
@@ -48,7 +48,7 @@ public class WarpManager extends AabernathyComponent
             getApiInstance().getLogger().warning(error.getMessage());
             return null;
         }
-        return new WarpManager(getApiInstance(), data);
+        return new WarpManager(data);
     }
 
     /**
