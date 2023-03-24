@@ -1,12 +1,11 @@
 package org.ww.adt.events;
 
 import org.bukkit.event.Listener;
-import org.ww.adt.AabernathyAPI;
 import org.ww.adt.AabernathyComponent;
 
-public abstract class EventAPI extends AabernathyComponent implements Listener {
+public abstract class EventListenerBase extends AabernathyComponent implements Listener {
 
-    public EventAPI()
+    public EventListenerBase()
     {
         super();
         getApiInstance().registerEvent(this);

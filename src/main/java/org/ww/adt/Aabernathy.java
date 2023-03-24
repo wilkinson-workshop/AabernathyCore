@@ -3,7 +3,7 @@ package org.ww.adt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.ww.adt.events.PlayerEventAPI;
+import org.ww.adt.events.PlayerEventListener;
 
 import java.io.IOException;
 import java.util.logging.Logger;
@@ -33,7 +33,7 @@ public class Aabernathy implements AabernathyAPI {
         AabernathyComponent.setApiInstance(this);
 
         // Set event listeners.
-        new PlayerEventAPI();
+        new PlayerEventListener();
     }
 
     public Integer getDebugLevel()

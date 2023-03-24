@@ -4,26 +4,28 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
-import org.ww.adt.AabernathyComponent;
-import org.ww.adt.AabernathyAPI;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-public class WarpManager extends AabernathyComponent
+public class JsonWarpManager extends WarpManagerBase
 {
     private final static Gson gson = new Gson();
+    private final static String formatKey = "%s:%s"; // <UUID>:<warpName>
 
     private final Map<String, WarpMeta> warpRecords;
 
-    public WarpManager()
+    public JsonWarpManager()
     {
         super();
         warpRecords = new LinkedHashMap<>();
     }
 
-    public WarpManager(Map<String, WarpMeta> warpRecords)
+    public JsonWarpManager(Map<String, WarpMeta> warpRecords)
     {
         super();
         this.warpRecords = warpRecords;
@@ -34,7 +36,7 @@ public class WarpManager extends AabernathyComponent
      * @param filePath
      * @return a WarpManager object.
      */
-    public WarpManager loadJSON(File filePath)
+    public static JsonWarpManager loadJSON(File filePath)
     {
         Map<String, WarpMeta> data;
         Type serialType = new TypeToken<LinkedHashMap<String, WarpMeta>>() {}.getType();
@@ -48,21 +50,21 @@ public class WarpManager extends AabernathyComponent
             getApiInstance().getLogger().warning(error.getMessage());
             return null;
         }
-        return new WarpManager(data);
+        return new JsonWarpManager(data);
     }
 
     /**
      * Saves WarpManager records to a target filePath on disk.
      * @param filePath
      */
-    public void dumpJSON(File filePath)
+    public static void dumpJSON(JsonWarpManager manager, File filePath)
     {
         filePath.getParentFile().mkdirs();
 
         try {
             filePath.createNewFile();
             Writer writer = new FileWriter(filePath, false);
-            gson.toJson(warpRecords, writer);
+            gson.toJson(manager.warpRecords, writer);
 
             writer.flush();
             writer.close();
@@ -71,12 +73,6 @@ public class WarpManager extends AabernathyComponent
         }
     }
 
-    /**
-     * Creates a new WarpMeta object and adds it to the warp records. A record
-     * which describes the data of a warp spot.
-     * @param entity
-     * @param name
-     */
     public WarpMeta addEntityRecord(@NotNull Entity entity, String name, WarpAccess access)
     {
         WarpMeta data = WarpMeta.fromEntity(entity, name, access);
@@ -89,61 +85,46 @@ public class WarpManager extends AabernathyComponent
         return addEntityRecord(entity, name, WarpAccess.PRIVATE);
     }
 
-    /**
-     * Removes the given WarpMeta object from warp records and returns it.
-     * @param entity
-     * @return object describing some warp location.
-     */
     public WarpMeta popEntityRecord(@NotNull Entity entity, String name)
     {
         return warpRecords.remove(makeEntityKey(entity, name));
     }
 
-    /**
-     * Retrieve a WarpMeta record object.
-     * @param entity
-     * @param name
-     * @return object describing some warp location.
-     */
+    public List<WarpMeta> getEntityRecord(@NotNull Entity entity)
+    {
+        LinkedList<WarpMeta> warps = new LinkedList<>();
+        for (WarpMeta warp : warpRecords.values())
+        {
+            if (warpIsEntityAccessible(entity, warp))
+                warps.add(warp);
+        }
+        return warps;
+    }
+
+    public List<WarpMeta> getEntityRecord(@NotNull Entity entity, WarpType type)
+    {
+        LinkedList<WarpMeta> warps = new LinkedList<>();
+        for (WarpMeta warp : warpRecords.values())
+        {
+            if (!warpIsEntityAccessible(entity, warp))
+                continue;
+            if (entityIsOwner(entity, warp) && type == WarpType.PLAYER_OWNED)
+                warps.add(warp);
+            else if (serverIsOwner(warp) && type == WarpType.SERVER_OWNED)
+                warps.add(warp);
+            else if (!serverIsOwner(warp) && type == WarpType.ENTITY_OWNED)
+                warps.add(warp);
+        }
+        return warps;
+    }
+
     public WarpMeta getEntityRecord(@NotNull Entity entity, String name)
     {
         return warpRecords.get(makeEntityKey(entity, name));
     }
 
-    /**
-     * Retrieve all WarpMeta records that are accessible to the entity.
-     * @param entity
-     * @return
-     */
-    public List<WarpMeta> getEntityRecords(@NotNull Entity entity)
-    {
-        LinkedList<WarpMeta> data = new LinkedList<>();
-        for (WarpMeta warp : warpRecords.values())
-        {
-            if (warp.OwnerUUID() == entity.getUniqueId() || warp.Access() == WarpAccess.PUBLIC)
-                data.add(warp);
-        }
-        return data;
-    }
-
-    /**
-     * Retrieve all WarpMeta records related to an entity.
-     * @param entity
-     * @return
-     */
-    public List<WarpMeta> getEntityOwnedRecords(@NotNull Entity entity)
-    {
-        LinkedList<WarpMeta> data = new LinkedList<>();
-        for (String key : warpRecords.keySet())
-        {
-            if (key.contains(entity.getUniqueId().toString()))
-                data.add(warpRecords.get(key));
-        }
-        return data;
-    }
-
     private static String makeEntityKey(@NotNull Entity entity, String name)
     {
-        return String.format("%s::%s", entity.getUniqueId(), name);
+        return String.format(formatKey, entity.getUniqueId(), name);
     }
 }

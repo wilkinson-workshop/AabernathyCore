@@ -1,17 +1,14 @@
 package org.ww.adt.events;
 
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.ww.adt.AabernathyComponent;
-import org.ww.adt.AabernathyAPI;
 import org.ww.adt.common.Message;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayerEventAPI extends EventAPI
+public class PlayerEventListener extends EventListenerBase
 {
     /**
      * Random number generator.
