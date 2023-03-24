@@ -21,9 +21,7 @@ public class Engine extends AabernathyComponent {
      */
     private void configureSessionFactory()
     {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        sessionFactory = configuration.buildSessionFactory();
+        sessionFactory = new Configuration().configure().buildSessionFactory();
     }
 
     /**
