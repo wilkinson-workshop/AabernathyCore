@@ -30,7 +30,7 @@ dependencies {
     compileOnly 'org.xerial:sqlite-jdbc:3.40.1.0'
     compileOnly 'com.github.gwenn:sqlite-dialect:0.1.2'
 
-    runtimeClasspath 'org.hibernate:hibernate-core:6.1.7.Final'
+    compileClasspath 'org.hibernate:hibernate-core:6.1.7.Final'
 }
 
 def targetJavaVersion = 18
