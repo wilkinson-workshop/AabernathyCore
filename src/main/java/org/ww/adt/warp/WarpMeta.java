@@ -7,7 +7,6 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 public class WarpMeta {
-    private long id;
     private String name;
     private String worldName;
     private WarpType type;
@@ -20,8 +19,9 @@ public class WarpMeta {
     private float pitch;
     private float yaw;
 
+    private WarpAccess access;
+
     public WarpMeta(
-            long id,
             String name,
             String worldName,
             WarpType type,
@@ -30,9 +30,9 @@ public class WarpMeta {
             float z,
             float y,
             float pitch,
-            float yaw)
+            float yaw,
+            WarpAccess access)
     {
-        this.id = id;
         this.name = name;
         this.worldName = worldName;
         this.type = type;
@@ -44,39 +44,43 @@ public class WarpMeta {
 
         this.pitch = pitch;
         this.yaw   = yaw;
+
+        this.access = access;
     }
 
     public WarpMeta(
-            long id,
             String name,
             String worldName,
             WarpType type,
             UUID ownerUUID,
-            WarpCoordinates coordinates)
+            WarpPoint point,
+            WarpAccess access)
     {
-        this.id = id;
         this.name = name;
         this.worldName = worldName;
         this.type = type;
         this.ownerUUID = ownerUUID;
 
-        this.positionX = coordinates.PositionX();
-        this.positionZ = coordinates.PositionZ();
-        this.positionY = coordinates.PositionY();
+        this.positionX = point.PositionX();
+        this.positionZ = point.PositionZ();
+        this.positionY = point.PositionY();
 
-        this.pitch = coordinates.Pitch();
-        this.yaw   = coordinates.Yaw();
+        this.pitch = point.Pitch();
+        this.yaw   = point.Yaw();
+
+        this.access = access;
     }
 
-    public long Id() { return this.id; }
     public String Name() { return this.name; }
     public String WorldName() { return this.worldName; }
     public WarpType Type() { return this.type; }
     public UUID OwnerUUID() { return this.ownerUUID; }
 
-    public WarpCoordinates Coordinates()
+    public WarpAccess Access() { return this.access; }
+
+    public WarpPoint Point()
     {
-        return new WarpCoordinates(
+        return new WarpPoint(
                 this.positionX,
                 this.positionZ,
                 this.positionY,
@@ -84,12 +88,12 @@ public class WarpMeta {
                 this.yaw);
     }
 
-    public static WarpMeta fromEntity(Entity entity, String name, long id)
+    public static WarpMeta fromEntity(Entity entity, String name, WarpAccess access)
     {
         WarpType type;
 
         Location loc = entity.getLocation();
-        WarpCoordinates coord = new WarpCoordinates(
+        WarpPoint point = new WarpPoint(
                 loc.getBlockX(),
                 loc.getBlockZ(),
                 loc.getBlockY(),
@@ -104,11 +108,11 @@ public class WarpMeta {
             type = WarpType.SERVER_OWNED;
 
         return new WarpMeta(
-                id,
                 name,
                 worldName,
                 type,
                 ownerUUID,
-                coord);
+                point,
+                access);
     }
 }

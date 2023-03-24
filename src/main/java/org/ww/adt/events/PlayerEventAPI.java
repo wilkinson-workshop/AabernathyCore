@@ -5,31 +5,18 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.ww.adt.AabernathyComponent;
-import org.ww.adt.AabernathyI;
+import org.ww.adt.AabernathyAPI;
 import org.ww.adt.common.Message;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayerE extends AabernathyComponent implements Listener
+public class PlayerEventAPI extends EventAPI
 {
-
-    /**
-     * Parent instance of Aabernathy's API.
-     */
-    private static AabernathyI apiInstance = null;
-
     /**
      * Random number generator.
      */
     private final static Random random = new Random();
-
-    public PlayerE(AabernathyI apiInstancef)
-    {
-        super(apiInstancef);
-        apiInstance = apiInstancef;
-        apiInstance.registerEvent(this);
-    }
 
     @EventHandler
     public static void onPlayerJoin(PlayerJoinEvent event)
@@ -53,7 +40,7 @@ public class PlayerE extends AabernathyComponent implements Listener
      */
     private static String[] getMessageOfTheDay()
     {
-        ArrayList<String> message = (ArrayList<String>) apiInstance
+        ArrayList<String> message = (ArrayList<String>) getApiInstance()
                 .getConfig(true)
                 .getStringList("messages.motd");
 
@@ -68,7 +55,7 @@ public class PlayerE extends AabernathyComponent implements Listener
      */
     private static String getJoinMessage()
     {
-        ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
+        ArrayList<String> messageOpts = (ArrayList<String>) getApiInstance()
             .getConfig(true)
             .getStringList("messages.onPlayerJoin");
 
@@ -83,7 +70,7 @@ public class PlayerE extends AabernathyComponent implements Listener
      */
     private static String getQuitMessage()
     {
-        ArrayList<String> messageOpts = (ArrayList<String>) apiInstance
+        ArrayList<String> messageOpts = (ArrayList<String>) getApiInstance()
             .getConfig(true)
             .getStringList("messages.onPlayerQuit");
 

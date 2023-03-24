@@ -3,17 +3,17 @@ package org.ww.adt;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.ww.adt.events.PlayerE;
+import org.ww.adt.events.PlayerEventAPI;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class Aabernathy implements AabernathyI {
+public class Aabernathy implements AabernathyAPI {
 
     /**
      * Singleton instance used to interact with internally.
      */
-    private static AabernathyI instance;
+    private static AabernathyAPI instance;
 
     /**
      * Parent Plugin object. Hooks in as API used to interact
@@ -29,11 +29,11 @@ public class Aabernathy implements AabernathyI {
         this.plugin = plugin;
         this.plugin.saveDefaultConfig();
 
-        // Set event listeners.
-        new PlayerE(this);
+        // Initialize component API.
+        AabernathyComponent.setApiInstance(this);
 
-        // Set the singleton to this instance
-        setInstance(this);
+        // Set event listeners.
+        new PlayerEventAPI();
     }
 
     public Integer getDebugLevel()
@@ -66,23 +66,5 @@ public class Aabernathy implements AabernathyI {
     public void registerEvent(Listener listener)
     {
         this.plugin.getServer().getPluginManager().registerEvents(listener, this.plugin);
-    }
-
-    /**
-     * Sets the singleton instance.
-     * @param apiInstance
-     */
-    public static void setInstance(AabernathyI apiInstance)
-    {
-        instance = apiInstance;
-    }
-
-    /**
-     * Gets the singleton instance.
-     * @return Instance of this interface that is loaded into memory.
-     */
-    public static AabernathyI getInstance()
-    {
-        return instance;
     }
 }

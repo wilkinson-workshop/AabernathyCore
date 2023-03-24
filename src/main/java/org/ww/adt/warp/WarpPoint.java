@@ -1,6 +1,6 @@
 package org.ww.adt.warp;
 
-public class WarpCoordinates {
+public class WarpPoint {
     private float positionX;
     private float positionZ;
     private float positionY;
@@ -8,7 +8,7 @@ public class WarpCoordinates {
     private float pitch;
     private float yaw;
 
-    public WarpCoordinates(float x, float z, float y, float pitch, float yaw)
+    public WarpPoint(float x, float z, float y, float pitch, float yaw)
     {
         this.positionX = x;
         this.positionZ = z;

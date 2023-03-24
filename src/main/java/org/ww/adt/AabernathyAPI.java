@@ -5,7 +5,7 @@ import org.bukkit.event.Listener;
 
 import java.util.logging.Logger;
 
-public interface AabernathyI
+public interface AabernathyAPI
 {
     /**
      * Returns what level of debug information is output to server logs
