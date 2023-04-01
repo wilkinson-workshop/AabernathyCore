@@ -34,7 +34,9 @@ public class Aabernathy implements AabernathyAPI {
 
         // Initialize component API.
         AabernathyComponent.setApiInstance(this);
-
+        
+        new DAOEngine();
+        
         // Set event listeners.
         new PlayerEventListener();
     }
