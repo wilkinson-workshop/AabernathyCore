@@ -5,10 +5,10 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.ww.adt.AabernathyComponent;
 
-public class Engine extends AabernathyComponent {
+public class DAOEngine extends AabernathyComponent {
     private SessionFactory sessionFactory;
 
-    public Engine()
+    public DAOEngine()
     {
         super();
         configureSessionFactory();
