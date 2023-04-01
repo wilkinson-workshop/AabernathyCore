@@ -33,11 +33,13 @@ dependencies {
     compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     compileOnly 'org.hibernate:hibernate-core:6.2.0.CR3'
+    runtimeOnly 'org.hibernate:hibernate-core:6.2.0.CR3'
     compileOnly 'mysql:mysql-connector-java:8.0.32'
 
     // Test dependencies.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testRuntimeOnly 'mysql:mysql-connector-java:8.0.32'
 }
 
 def targetJavaVersion = 18
