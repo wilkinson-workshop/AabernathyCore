@@ -41,13 +41,6 @@ dependencies {
     testRuntimeOnly 'mysql:mysql-connector-java:8.0.32'
 }
 
-jar {
-  manifest {
-    attributes(
-      "Class-Path": configurations.implementation.collect { it.getName() }.join(' '))
-  }
-}
-
 def targetJavaVersion = 18
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
