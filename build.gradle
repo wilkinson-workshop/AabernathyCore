@@ -33,7 +33,6 @@ dependencies {
     compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     implementation 'org.hibernate:hibernate-core:6.2.0.CR3'
-    api 'org.hibernate:hibernate-core:6.2.0.CR3'
     compileOnly 'mysql:mysql-connector-java:8.0.32'
 
     // Test dependencies.
@@ -50,6 +49,15 @@ java {
     if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
     }
+}
+
+task fatJar(type: Jar) {
+    zip64 true
+//    baseName = project.name + "-fat"
+    from {
+        configurations.implementation.collect{ it.isDirectory() ? it : zipTree(it) }
+    } {}
+    with jar
 }
 
 tasks.withType(JavaCompile).configureEach {

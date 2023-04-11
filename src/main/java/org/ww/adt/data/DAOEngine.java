@@ -33,4 +33,3 @@ public class DAOEngine extends AabernathyComponent {
         return sessionFactory.openSession();
     }
 }
-
