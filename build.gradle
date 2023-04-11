@@ -1,5 +1,5 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'java'
     id 'org.hibernate.orm' version '6.2.0.CR4'
 }
@@ -32,8 +32,9 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:24.0.1'
     compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'
-    implementation 'org.hibernate:hibernate-core:6.2.0.CR3'
     compileOnly 'mysql:mysql-connector-java:8.0.32'
+
+    implementation 'org.hibernate:hibernate-core:6.2.0.CR3'
 
     // Test dependencies.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
@@ -59,9 +60,9 @@ java {
 
 task fatJar(type: Jar) {
     zip64 true
-//    baseName = project.name + "-fat"
+    duplicatesStrategy(DuplicatesStrategy.WARN)
     from {
-        configurations.implementation.collect{ it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) }
     } {}
     with jar
 }
