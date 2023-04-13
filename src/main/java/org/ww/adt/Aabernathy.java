@@ -30,13 +30,11 @@ public class Aabernathy implements AabernathyAPI {
         this.plugin = plugin;
         this.plugin.saveDefaultConfig();
 
-        new DAOEngine();
-
         // Initialize component API.
         AabernathyComponent.setApiInstance(this);
-        
+
         new DAOEngine();
-        
+
         // Set event listeners.
         new PlayerEventListener();
     }
