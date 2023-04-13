@@ -32,9 +32,10 @@ dependencies {
     compileOnly 'org.jetbrains:annotations:24.0.1'
     compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'mysql:mysql-connector-java:8.0.32'
-    compileOnly 'javax.xml.bind:jaxb-api:2.3.0'
-    compileOnly 'javax.activation:activation:1.1'
-    compileOnly 'org.glassfish.jaxb:jaxb-runtime2.3.0'
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'javax.activation:activation:1.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime2.3.0'
 
     implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
     implementation 'org.hibernate:hibernate-core:6.1.7.Final'
